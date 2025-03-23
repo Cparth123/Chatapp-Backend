@@ -12,8 +12,8 @@ const {
   removeFriend,
   editGroup,
   sendBackFriendRequest,
-} = require("../controllers/chatController");
-const { authMiddleware } = require("../middleware/authMiddleware");
+} = require("../../controllers/chatController");
+const { authMiddleware } = require("../../middleware/authMiddleware");
 
 const router = express.Router();
 
