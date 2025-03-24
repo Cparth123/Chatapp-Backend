@@ -2,14 +2,18 @@ const mongoose = require("mongoose");
 
 const MessageSchema = new mongoose.Schema(
   {
-    sender: {
+    senderId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    receiver: {
+    receiverId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
+    },
+    roomId: {
+      type: String,
       required: true,
     },
     group: { type: mongoose.Schema.Types.ObjectId, ref: "Group" }, // For group chat
