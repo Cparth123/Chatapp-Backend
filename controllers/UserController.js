@@ -116,20 +116,20 @@ exports.getUserFriends = async (req, res) => {
     // Find the user by their ID and only select the 'friends' field
     const user = await User.findById(userId).select("friends");
 
-    // If the user is not found, return a 404 error
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Fetch all the details of the friends in the user's friend list
-    const friendList = await User.find({ 
-      _id: { $in: user.friends } // Query for friends by matching their IDs
-    });
+    // Fetch all friends but exclude sensitive fields
+    const friendList = await User.find(
+      { _id: { $in: user.friends } }, 
+      "-password -email -phone -otp -otpExpires" // Exclude sensitive data
+    );
 
-    // Return the friends' details
+    // Return only public friend details
     res.status(200).json({
       message: "User friends fetched successfully",
-      friends: friendList, // Send the full list of friends
+      friends: friendList,
     });
   } catch (error) {
     console.error(error);

@@ -12,6 +12,7 @@ const {
   removeFriend,
   editGroup,
   sendBackFriendRequest,
+  getGroupChat,
 } = require("../controllers/chatController");
 const { authMiddleware } = require("../middleware/authMiddleware");
 
@@ -21,6 +22,7 @@ router.get("/getchats/:userId", authMiddleware, getUserChats);
 router.post("/send-message", authMiddleware, sendMessage);
 
 // Group
+router.get("/get-room-groupId", getGroupChat);
 router.post("/create-room", authMiddleware, createGroup);
 router.post("/edit-room/:roomId", authMiddleware, editGroup);
 router.post("/delete-room/:roomId", authMiddleware, deleteGroup);

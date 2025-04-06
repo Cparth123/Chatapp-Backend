@@ -24,6 +24,7 @@ const UserSchema = new mongoose.Schema(
 
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
+    groups: [{ type: mongoose.Schema.Types.ObjectId, ref: "Group" }], // List of group IDs the user is part of
   },
   { timestamps: true } // Auto add createdAt & updatedAt
 );
